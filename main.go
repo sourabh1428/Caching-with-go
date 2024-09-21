@@ -50,6 +50,8 @@ func (store *InMemoryStore) Delete(key string) bool {
 	return exists
 }
 
+//das
+
 func main() {
 	maxSize := 100
 	store := NewInMemoryStore(maxSize)
