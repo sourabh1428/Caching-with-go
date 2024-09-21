@@ -109,6 +109,10 @@ func main() {
 		}
 	})
 
+	http.HandleFunc("/hue", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("it's normal"))
+	})
+
 	fmt.Println("Server is running on :8080")
 	http.ListenAndServe(":8080", nil)
 }
