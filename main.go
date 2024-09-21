@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"sync"
+	"time"
 )
 
 type InMemoryStore struct {
@@ -109,8 +110,19 @@ func main() {
 		}
 	})
 
-	http.HandleFunc("/hue", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("it's normal"))
+	http.HandleFunc("/measure-time", func(w http.ResponseWriter, r *http.Request) {
+		// Start time
+		startTime := time.Now()
+
+		// Simulate data retrieval (replace this with actual data fetching logic)
+		time.Sleep(500 * time.Millisecond) // Simulates a delay in data retrieval
+
+		// Calculate elapsed time
+		elapsedTime := time.Since(startTime)
+
+		// Write response
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprintf(w, "Data retrieved in %s\n", elapsedTime)
 	})
 
 	fmt.Println("Server is running on :8080")
